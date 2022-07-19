@@ -3,9 +3,7 @@ import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Rout
 import Layout from "app/core/layouts/Layout"
 import getCustomer from "app/customers/queries/getCustomer"
 import getLocations from "app/locations/queries/getLocations"
-import deleteLocation from "app/locations/mutations/deleteLocation"
 import { Button, Table } from "@nextui-org/react"
-import db from "db"
 
 export const Customer = () => {
   const router = useRouter()
