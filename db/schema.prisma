@@ -16,10 +16,10 @@ model User {
   id             Int      @id @default(autoincrement())
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
-  name           String?
+  name           String   @unique
   email          String   @unique
   hashedPassword String?
-  role           String   @default("USER")
+  role           String
 
   tokens   Token[]
   sessions Session[]
@@ -63,3 +63,28 @@ model Token {
 // enum TokenType {
 //   RESET_PASSWORD
 // }
+
+model Customer {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  firstname String
+  lastname  String
+  locations Location[] @relation("LocationToCustomer")
+}
+
+model Location {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  number     Int?     @default(0)
+  lot        Int?
+  block      String?
+  parcel     String?
+  street     String
+  city       String
+  state      String   @default("FL")
+  zipcode    Int
+  customer   Customer @relation("LocationToCustomer", fields: [customerId], references: [id])
+  customerId Int
+}

@@ -18,7 +18,7 @@ export const LoginForm = (props: LoginFormProps) => {
       <Form
         submitText="Login"
         schema={Login}
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ name: "", password: "" }}
         onSubmit={async (values) => {
           try {
             const user = await loginMutation(values)
@@ -35,7 +35,7 @@ export const LoginForm = (props: LoginFormProps) => {
           }
         }}
       >
-        <LabeledTextField name="email" label="Email" placeholder="Email" />
+        <LabeledTextField name="name" label="Username" placeholder="Username" />
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
         <div>
           <Link href={Routes.ForgotPasswordPage()}>

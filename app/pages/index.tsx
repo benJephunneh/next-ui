@@ -4,6 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
+import { Button } from "@nextui-org/react"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -17,29 +18,30 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <>
-        <button
-          className="button small"
+        <Button
+          auto
+          color="gradient"
           onClick={async () => {
             await logoutMutation()
           }}
         >
           Logout
-        </button>
+        </Button>
         <div>
-          User id: <code>{currentUser.id}</code>
+          Username: <code>{currentUser.name}</code>
           <br />
-          User role: <code>{currentUser.role}</code>
+          Role: <code>{currentUser.role}</code>
         </div>
       </>
     )
   } else {
     return (
       <>
-        <Link href={Routes.SignupPage()}>
-          <a className="button small">
-            <strong>Sign Up</strong>
-          </a>
-        </Link>
+        <Button shadow color="gradient" auto>
+          <Link href={Routes.SignupPage()}>
+            <strong>Sign up</strong>
+          </Link>
+        </Button>
         <Link href={Routes.LoginPage()}>
           <a className="button small">
             <strong>Login</strong>
@@ -72,7 +74,7 @@ const Home: BlitzPage = () => {
           </strong>
         </p>
         <pre>
-          <code>blitz generate all project name:string</code>
+          <code>blitz generate all customer firstname:string lastname:string</code>
         </pre>
         <div style={{ marginBottom: "1rem" }}>(And select Yes to run prisma migrate)</div>
         <div>
@@ -87,8 +89,8 @@ const Home: BlitzPage = () => {
           </pre>
           <p>
             and go to{" "}
-            <Link href="/projects">
-              <a>/projects</a>
+            <Link href="/customers">
+              <a>/customers</a>
             </Link>
           </p>
         </div>
